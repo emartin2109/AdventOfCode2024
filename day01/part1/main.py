@@ -16,8 +16,8 @@ def get_parsed_input():
     """
     input_str = AOCInput.get_content()
 
-    list1 = np.array(sorted(cast_list(re.findall(r"[0-9]+ +", input_str), int)))
-    list2 = np.array(sorted(cast_list(re.findall(r" +[0-9]+", input_str), int)))
+    list1 = np.array(sorted(cast_list(re.findall(r"\d+ +", input_str), int)))
+    list2 = np.array(sorted(cast_list(re.findall(r" +\d+", input_str), int)))
 
     return list1, list2
 
@@ -25,7 +25,7 @@ def solve(lists):
     """Solve the problem of the day with the given parsed input
     return the found solution
     """
-    return np.sum(np.abs(lists[0] - lists[1]))
+    return sum(abs(lists[0] - lists[1]))
 
 if __name__ == '__main__':
     print(solve(get_parsed_input()))
