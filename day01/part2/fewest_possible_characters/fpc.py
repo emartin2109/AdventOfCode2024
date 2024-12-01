@@ -1,1 +1,3 @@
-import re;a,b=map(lambda x:map(int,re.findall(x,open("i").read())),[r"\d+ +",r" +\d+"]);print(sum(x*b.count(x)for x in a))
+import re as r
+a,b=map(lambda x:sorted(map(int,r.findall(x,open("i").read()))),[r"\d+ +",r" +\d+"])
+print(sum(i*b.count(i)for i in a))
