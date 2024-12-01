@@ -3,7 +3,7 @@
 
 import re
 
-from config import Config
+from .config import Config
 
 class AOCInput:
     """Class used to return daily AOC input in different formats
