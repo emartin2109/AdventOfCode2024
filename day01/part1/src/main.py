@@ -2,39 +2,30 @@
 """
 
 import re
+import numpy as np
 
-from aoc_parser import AOCInput, AOCParser
+from aoc_parser import AOCInput
+
+def cast_list(test_list: list, data_type):
+    """Cast a list of strings to a list of specified data type
+    """
+    return list(map(data_type, test_list))
 
 def get_parsed_input():
     """Return the parsed input of the current aoc day
     """
-    input_lines = AOCInput.split_input("\n")
-    input_nbrs = AOCParser.apply_regex_to_list(re.findall, input_lines, r"-?[0-9]+")
-    parsed_input_nbrs = AOCParser.reduce_list_of_list(input_nbrs)
-    return parsed_input_nbrs
+    input_str = AOCInput.get_content()
 
-def solve(parsed_input):
+    list1 = np.array(sorted(cast_list(re.findall(r"[0-9]+ +", input_str), int)))
+    list2 = np.array(sorted(cast_list(re.findall(r" +[0-9]+", input_str), int)))
+
+    return list1, list2
+
+def solve(lists):
     """Solve the problem of the day with the given parsed input
     return the found solution
     """
-    result = 0
-
-    list1 = []
-    list2 = []
-
-    for i, curr_nbr in enumerate(parsed_input):
-        if i % 2:
-            list1.append(int(curr_nbr))
-        else:
-            list2.append(int(curr_nbr))
-
-    list1.sort()
-    list2.sort()
-
-    for _, (list1_nbr, list2_nbr) in enumerate(zip(list1, list2)):
-        result += abs(list1_nbr - list2_nbr)
-
-    return result
+    return np.sum(np.abs(lists[0] - lists[1]))
 
 if __name__ == '__main__':
     print(solve(get_parsed_input()))

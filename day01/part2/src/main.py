@@ -3,33 +3,31 @@
 
 import re
 
-from aoc_parser import AOCInput, AOCParser
+from aoc_parser import AOCInput
+
+def cast_list(test_list: list, data_type):
+    """Cast a list of strings to a list of specified data type
+    """
+    return list(map(data_type, test_list))
 
 def get_parsed_input():
     """Return the parsed input of the current aoc day
     """
-    input_lines = AOCInput.split_input("\n")
-    input_nbrs = AOCParser.apply_regex_to_list(re.findall, input_lines, r"-?[0-9]+")
-    parsed_input_nbrs = AOCParser.reduce_list_of_list(input_nbrs)
-    return parsed_input_nbrs
+    input_str = AOCInput.get_content()
 
-def solve(parsed_input):
+    list1 = sorted(cast_list(re.findall(r"[0-9]+ +", input_str), int))
+    list2 = sorted(cast_list(re.findall(r" +[0-9]+", input_str), int))
+
+    return list1, list2
+
+def solve(lists):
     """Solve the problem of the day with the given parsed input
     return the found solution
     """
     result = 0
 
-    list1 = []
-    list2 = []
-
-    for i, curr_nbr in enumerate(parsed_input):
-        if i % 2:
-            list1.append(int(curr_nbr))
-        else:
-            list2.append(int(curr_nbr))
-
-    for list1_nbr in list1:
-        result += list1_nbr * list2.count(list1_nbr)
+    for list1_nbr in lists[0]:
+        result += list1_nbr * lists[1].count(list1_nbr)
 
     return result
 
