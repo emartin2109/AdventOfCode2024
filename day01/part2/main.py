@@ -2,7 +2,6 @@
 """
 
 import re
-import numpy as np
 
 from aoc_parser import AOCInput
 
@@ -16,8 +15,8 @@ def get_parsed_input():
     """
     input_str = AOCInput.get_content()
 
-    list1 = np.array(sorted(cast_list(re.findall(r"[0-9]+ +", input_str), int)))
-    list2 = np.array(sorted(cast_list(re.findall(r" +[0-9]+", input_str), int)))
+    list1 = sorted(cast_list(re.findall(r"[0-9]+ +", input_str), int))
+    list2 = sorted(cast_list(re.findall(r" +[0-9]+", input_str), int))
 
     return list1, list2
 
