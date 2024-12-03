@@ -1,1 +1,1 @@
-import re;print(sum(int(a)*int(b) for a,b in re.findall(r"mul\((\d+),(\d+)\)",open('i').read())))
+import re;print(sum(int(a)*int(b)for a,b in re.findall(r"mul\((\d+),(\d+)\)",open('i').read())))

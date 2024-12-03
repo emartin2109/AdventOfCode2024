@@ -21,13 +21,13 @@ def solve(instructions):
     activated = True
 
     for instruction in instructions:
-        if len(re.findall(r"do\(\)", instruction)) > 0:
+        if instruction.startswith("do"):
             activated = True
 
-        elif len(re.findall(r"don't\(\)", instruction)) > 0:
+        elif instruction.startswith("don't"):
             activated = False
 
-        elif len(re.findall(r"mul\(\d+,\d+\)", instruction)) > 0 and activated:
+        elif instruction.startswith("mul") and activated:
             nbrs = list(map(int, re.findall(r"\d+", instruction)))
             result += nbrs[0] * nbrs[1]
 
