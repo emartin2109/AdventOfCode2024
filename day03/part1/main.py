@@ -9,7 +9,7 @@ def get_parsed_input():
     """Return the parsed input of the current aoc day
     """
     input_content = AOCInput.get_content()
-    instructions = re.findall(r"mul\(\d+,\d+\)", input_content)
+    instructions = re.findall(r"mul\((\d+),(\d+)\)", input_content)
 
     return instructions
 
@@ -19,9 +19,8 @@ def solve(instructions):
     """
     result = 0
 
-    for instruction in instructions:
-        nbrs = list(map(int, re.findall(r"\d+", instruction)))
-        result += nbrs[0] * nbrs[1]
+    for nbrs in instructions:
+        result += int(nbrs[0]) * int(nbrs[1])
 
     return result
 
