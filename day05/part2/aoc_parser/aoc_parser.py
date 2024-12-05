@@ -77,8 +77,8 @@ class AOCParser:
 
         grid_width = len(grid[0])
 
-        for y, _ in enumerate(grid):
-            for x, _ in enumerate(grid[y]):
+        for y in range(grid_height):
+            for x in range(grid_width):
                 patern_found = True
                 patern = []
 
