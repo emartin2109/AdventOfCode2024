@@ -10,8 +10,8 @@ def get_parsed_input():
     """
     parts = AOCInput.split_input("\n\n", strip=True)
 
-    rules = AOCParser.apply_regex_to_list(re.findall, parts[0].split("\n"), r"\d+")
-    pages = AOCParser.apply_regex_to_list(re.findall, parts[1].split("\n"), r"\d+")
+    rules = AOCParser.apply_regex_to_list(re.findall, r"\d+", parts[0].split("\n"))
+    pages = AOCParser.apply_regex_to_list(re.findall, r"\d+", parts[1].split("\n"))
 
     return rules, pages
 
