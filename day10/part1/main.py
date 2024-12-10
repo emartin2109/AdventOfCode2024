@@ -21,7 +21,7 @@ def take_path(grid, start_pos, prev_nbr):
         return 0
 
     if int(grid[start_pos[0]][start_pos[1]]) == 9:
-        grid[start_pos[0]][start_pos[1]] = '8'
+        grid[start_pos[0]][start_pos[1]] = '-1'
         return 1
 
     result = 0
